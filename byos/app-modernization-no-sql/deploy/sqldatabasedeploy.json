@@ -41,7 +41,7 @@
     "variables": {},
     "resources": [
         {
-            "name": "[variables('sqlserverName')]",
+            "name": "[parameters('sqlserverName')]",
             "type": "Microsoft.Sql/servers",
             "location": "[parameters('location')]",
             "tags": {
@@ -58,7 +58,7 @@
                     "type": "firewallrules",
                     "apiVersion": "2014-04-01",
                     "dependsOn": [
-                        "[variables('sqlserverName')]"
+                        "[parameters('sqlserverName')]"
                     ],
                     "location": "[parameters('location')]",
                     "name": "AllowAllWindowsAzureIps",

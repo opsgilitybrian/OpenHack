@@ -39,9 +39,9 @@ try {
         {
             Write-Output "Orchestrating Resource Deployments";
 
-            # #run the deployment:  
-            # $DeployResourcesScriptPath = Split-Path $MyInvocation.InvocationName
-            # & "$DeployResourcesScriptPath\deploy_02_DeployResources.ps1"
+            #run the deployment:  
+            $DeployResourcesScriptPath = Split-Path $MyInvocation.InvocationName
+            & "$DeployResourcesScriptPath\deploy_02_DeployResources.ps1"
         }
         else
         {
