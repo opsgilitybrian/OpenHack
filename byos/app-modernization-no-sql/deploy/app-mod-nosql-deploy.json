@@ -141,6 +141,7 @@
             "suffix": {"value": "[parameters('suffix')]" },
             "suffix2": {"value": "[parameters('suffix2')]" },
             "eventhubSku": {"value": "[parameters('eventhubSku')]" },
+            "skuCapacity": {"value": "[parameters('skuCapacity')]" },
             "eventHubName": {"value": "[parameters('eventHubName')]" },
             "consumerGroupName": {"value": "[parameters('consumerGroupName')]" }
         }

@@ -25,7 +25,9 @@ $outputs = New-AzResourceGroupDeployment `
             -suffix2 $suffix2 ` 
             -repoURL $repoURL `
             -branch $branch `
-            -artifactsLocation $artifactsLocation
+            -artifactsLocation $artifactsLocation `
+            -skuName "F1" `
+            -skuCapacity 1
 
 #validate EventHub namespace RG1
 $eh1Name = "openhackhub-$suffix";
