@@ -119,20 +119,6 @@
             }
         },
         {
-            "type": "Microsoft.Sql/servers/databases/backupLongTermRetentionPolicies",
-            "apiVersion": "2017-03-01-preview",
-            "name": "[concat(parameters('sqlserverName'), '/Movies/default')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers/databases', parameters('sqlserverName'), 'Movies')]"
-            ],
-            "properties": {
-                "weeklyRetention": "PT0S",
-                "monthlyRetention": "PT0S",
-                "yearlyRetention": "PT0S",
-                "weekOfYear": 0
-            }
-        },
-        {
             "type": "Microsoft.Sql/servers/databases/backupShortTermRetentionPolicies",
             "apiVersion": "2020-02-02-preview",
             "name": "[concat(parameters('sqlserverName'), '/Movies/default')]",
@@ -140,7 +126,7 @@
                 "[resourceId('Microsoft.Sql/servers/databases', parameters('sqlserverName'), 'Movies')]"
             ],
             "properties": {
-                "retentionDays": 7
+                "retentionDays": 1
             }
         },
         {
