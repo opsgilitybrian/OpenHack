@@ -93,80 +93,6 @@
             }
         },
         {
-            "type": "Microsoft.Sql/servers/databases/auditingPolicies",
-            "apiVersion": "2014-04-01",
-            "name": "[concat(parameters('sqlserverName'), '/Movies/Default')]",
-            "location": "[parameters('location')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers/databases', parameters('sqlserverName'), 'Movies')]"
-            ],
-            "properties": {
-                "auditingState": "Disabled"
-            }
-        },
-        {
-            "type": "Microsoft.Sql/servers/databases/auditingSettings",
-            "apiVersion": "2017-03-01-preview",
-            "name": "[concat(parameters('sqlserverName'), '/Movies/Default')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers/databases', parameters('sqlserverName'), 'Movies')]"
-            ],
-            "properties": {
-                "retentionDays": 0,
-                "isAzureMonitorTargetEnabled": false,
-                "state": "Disabled",
-                "storageAccountSubscriptionId": "00000000-0000-0000-0000-000000000000"
-            }
-        },
-        {
-            "type": "Microsoft.Sql/servers/databases/backupShortTermRetentionPolicies",
-            "apiVersion": "2020-02-02-preview",
-            "name": "[concat(parameters('sqlserverName'), '/Movies/default')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers/databases', parameters('sqlserverName'), 'Movies')]"
-            ],
-            "properties": {
-                "retentionDays": 1
-            }
-        },
-        {
-            "type": "Microsoft.Sql/servers/databases/extendedAuditingSettings",
-            "apiVersion": "2017-03-01-preview",
-            "name": "[concat(parameters('sqlserverName'), '/Movies/Default')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers/databases', parameters('sqlserverName'), 'Movies')]"
-            ],
-            "properties": {
-                "retentionDays": 0,
-                "isAzureMonitorTargetEnabled": false,
-                "state": "Disabled",
-                "storageAccountSubscriptionId": "00000000-0000-0000-0000-000000000000"
-            }
-        },
-        {
-            "type": "Microsoft.Sql/servers/databases/geoBackupPolicies",
-            "apiVersion": "2014-04-01",
-            "name": "[concat(parameters('sqlserverName'), '/Movies/Default')]",
-            "location": "[parameters('location')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers/databases', parameters('sqlserverName'), 'Movies')]"
-            ],
-            "properties": {
-                "state": "Enabled"
-            }
-        },
-        {
-            "type": "Microsoft.Sql/servers/databases/securityAlertPolicies",
-            "apiVersion": "2020-02-02-preview",
-            "name": "[concat(parameters('sqlserverName'), '/Movies/Default')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers/databases', parameters('sqlserverName'), 'Movies')]"
-            ],
-            "properties": {
-                "state": "Disabled"
-            }
-        },
-        {
             "type": "Microsoft.Sql/servers/databases/transparentDataEncryption",
             "apiVersion": "2014-04-01",
             "name": "[concat(parameters('sqlserverName'), '/Movies/current')]",
@@ -176,20 +102,6 @@
             ],
             "properties": {
                 "status": "Enabled"
-            }
-        },
-        {
-            "type": "Microsoft.Sql/servers/databases/vulnerabilityAssessments",
-            "apiVersion": "2017-03-01-preview",
-            "name": "[concat(parameters('sqlserverName'), '/Movies/Default')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers/databases', parameters('sqlserverName'), 'Movies')]"
-            ],
-            "properties": {
-                "recurringScans": {
-                    "isEnabled": false,
-                    "emailSubscriptionAdmins": true
-                }
             }
         }
     ]

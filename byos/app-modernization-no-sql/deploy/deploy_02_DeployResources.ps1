@@ -81,7 +81,7 @@ $outputs2 = New-AzResourceGroupDeployment `
 $sqlServerInstance = Get-AzSqlServer -ResourceGroupName $resourceGroup1Name -ServerName $sqlserverName;
 if ($sqlServerInstance)
 {
-    Write-Output "Sql server created: $sqlServerInstance.ServerName | $sqlServerInstance.FullyQualifiedDomainName";
+    Write-Output "Sql server created: $sqlserverName";
 }
 else
 {
