@@ -82,7 +82,25 @@
         }
     },
     "sqlserverName": {
-        "type": "string"
+        "type": "string",
+        "defaultValue": "[concat('openhacksql-', uniqueString(resourceGroup().id))]",
+        "metadata": {
+            "description": "The name of the SQL Server"
+        }
+    },
+    "sqlAdministratorLogin": {
+        "type": "string",
+        "defaultValue": "openhackadmin",
+        "metadata": {
+            "description": "The admin user of the SQL Server"
+        }
+    },
+    "sqlAdministratorLoginPassword": {
+        "type": "securestring",
+        "defaultValue": "Password123",
+        "metadata": {
+            "description": "The password of the admin user of the SQL Server"
+        }
     },
     "repoURL": {
         "type": "string",
