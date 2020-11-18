@@ -75,6 +75,18 @@ else
 {
     throw "Could not validate existence of deployed event hub $eh2Name";
 }
+Write-Output "All base resources are deployed and validated.";
+
+#deploy the database
+$templateUri2 = "https://raw.githubusercontent.com/opsgilitybrian/OpenHack/nosql-deployment-fixes/byos/app-modernization-no-sql/deploy/sqldatabasedeploy.json";
+
+Write-Output ("Starting Deployment of sql database");
+$outputs = New-AzResourceGroupDeployment `
+    -ResourceGroupName $resourceGroup1Name `
+    -location $location1 `
+    -TemplateUri $templateUri2 `
+    -sqlserverName $sqlserverName `
+    -suffix $suffix 
 
 #validate movies database was created.
 $dbInstance = Get-AzSqlDatabase -DatabaseName $databaseName -ServerName $sqlserverName -ResourceGroupName $resourceGroup1Name;
