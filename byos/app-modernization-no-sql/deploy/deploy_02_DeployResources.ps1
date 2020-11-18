@@ -23,8 +23,8 @@ $outputs = New-AzResourceGroupDeployment `
             -sqlAdministratorLoginPassword $(ConvertTo-SecureString -String $sqlAdministratorLoginPassword -AsPlainText -Force) `
             -suffix $suffix `
             -suffix2 $suffix2 ` 
-            -repoURL $repoURL
-            -branch $branch
+            -repoURL $repoURL `
+            -branch $branch `
             -artifactsLocation $artifactsLocation
 
 #validate EventHub namespace RG1
