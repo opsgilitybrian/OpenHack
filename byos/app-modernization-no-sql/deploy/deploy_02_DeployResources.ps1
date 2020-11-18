@@ -7,8 +7,6 @@
 #$templateUri = "https://raw.githubusercontent.com/microsoft/OpenHack/main/byos/app-modernization-no-sql/deploy/azuredeploy.json"
 
 $templateUri = "https://raw.githubusercontent.com/opsgilitybrian/OpenHack/nosql-deployment-fixes/byos/app-modernization-no-sql/deploy/app-mod-nosql-deploy.json";
-$repoURL = "https://github.com/opsgilitybrian/nosql-openhack.git";
-$branch = "master";
 $artifactsLocation = "https://raw.githubusercontent.com/opsgilitybrian/OpenHack/nosql-deployment-fixes/byos/app-modernization-no-sql/deploy";
 
 Write-Output "";
@@ -27,12 +25,7 @@ $outputs = New-AzResourceGroupDeployment `
             -sqlAdministratorLogin $sqlAdministratorLogin `
             -sqlAdministratorLoginPassword $(ConvertTo-SecureString -String $sqlAdministratorLoginPassword -AsPlainText -Force) `
             -suffix $suffix `
-            -suffix2 $suffix2 ` 
-            -repoURL $repoURL `
-            -branch $branch `
-            -artifactsLocation $artifactsLocation `
-            -skuName "F1" `
-            -skuCapacity 1
+            -suffix2 $suffix2 
 
 #validate EventHub namespace RG1
 $eh1Name = "openhackhub-$suffix";

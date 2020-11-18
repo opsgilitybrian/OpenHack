@@ -24,12 +24,15 @@ try {
         $suffix = -join ((48..57) + (97..122) | Get-Random -Count 13 | % {[char]$_})
         $suffix2 = -join ((48..57) + (97..122) | Get-Random -Count 13 | % {[char]$_})
         
+        $suffix = "6ifndrtczg7ah";
+        $suffix2 = "jnqby7iwc4mze";
+
         $databaseName = "Movies"
         $sqlserverName = "openhacksql-" + $teamName + "-" + $suffix
 
         ## Create the Resource Groups ##  
-        # $DeployRGsScriptPath = Split-Path $MyInvocation.InvocationName
-        #   & "$DeployRGsScriptPath\deploy_01_DeployResourceGroups.ps1";
+        $DeployRGsScriptPath = Split-Path $MyInvocation.InvocationName
+          & "$DeployRGsScriptPath\deploy_01_DeployResourceGroups.ps1";
 
         #get the groups:
         $rg1 = Get-AzResourceGroup -Name $resourceGroup1Name
@@ -50,9 +53,36 @@ try {
         }
 
         Write-Output ("Deployment Completed - " + $teamName);
+
+        $ordinalIgnorecase = [System.StringComparison]::OrdinalIgnoreCase
+        Write-Output "The next step imports data.  If everything has run correctly, and you have seen no errors, you may proceed.";
+        Write-Output "You may also wish to pause here for a moment and ensure that you have deployed the database, eventhub, and website in resource group 1 for this team";
+        Write-Output "";
+        $continueImporting = Read-Host "Would you like to continue with the import (takes around 20 minutes) [y/n]";
+        if ($continueImporting.StartsWith('y', $ordinalIgnorecase))
+        {
+            Write-Output "Starting import";
+            #run the deployment:  
+            $DeployResourcesScriptPath = Split-Path $MyInvocation.InvocationName
+            & "$DeployResourcesScriptPath\deploy_03_ImportData.ps1";
+    
+            Write-Output "Import complete";
+        }
+        else
+        {
+            Write-Output "Cancelling import and quitting script.  To run again, either redeploy or override the suffix/suffix2 variables";
+            throw "Script execution cancelled by user";
+        }
+        
+        #validate website is deployed:  
+        #run the deployment:  
+        $DeployResourcesScriptPath = Split-Path $MyInvocation.InvocationName
+        & "$DeployResourcesScriptPath\deploy_04_FinalValidation.ps1";
     }
 }
 catch {
     Write-Output "An error was encountered, script could not complete:  $($PSItem.ToString())";
     Write-Output "Deployment Completed";
 }
+
+
