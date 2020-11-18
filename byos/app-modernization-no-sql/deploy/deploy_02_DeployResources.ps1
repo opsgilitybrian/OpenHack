@@ -68,7 +68,7 @@
 $templateUri2 = "https://raw.githubusercontent.com/opsgilitybrian/OpenHack/nosql-deployment-fixes/byos/app-modernization-no-sql/deploy/sqldatabasedeploy.json";
 
 Write-Output ("Starting Deployment of sql database");
-$outputs = New-AzResourceGroupDeployment `
+$outputs2 = New-AzResourceGroupDeployment `
     -ResourceGroupName $resourceGroup1Name `
     -location $location1 `
     -TemplateUri $templateUri2 `
