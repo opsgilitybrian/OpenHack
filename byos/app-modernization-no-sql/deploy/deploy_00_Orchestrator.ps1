@@ -3,9 +3,9 @@ $teamCount = Read-Host "How many teams are hacking?";
 $location1 = Read-Host "What is the first location to deploy to (i.e. eastus)?";
 $location2 = Read-Host "What is the second location to deploy to (i.e. westus)?"
 
-# Enter the SQL Server username (i.e. openhackadmin)
+# Enter the SQL Server username 
 $sqlAdministratorLogin = "openhackadmin"
-# Enter the SQL Server password (i.e. Password123)
+# Enter the SQL Server password 
 $sqlAdministratorLoginPassword = "Password123"
 
 try {
@@ -27,19 +27,21 @@ try {
         $databaseName = "Movies"
         $sqlserverName = "openhacksql-" + $teamName + "-" + $suffix
 
-        #run the script to create the groups
-        $DeployRGsScriptPath = Split-Path $MyInvocation.InvocationName
-        & "$DeployRGsScriptPath\deploy_01_DeployResourceGroups.ps1"
+        ## Create the Resource Groups ##  
+        #$DeployRGsScriptPath = Split-Path $MyInvocation.InvocationName
+        #    & "$DeployRGsScriptPath\deploy_01_DeployResourceGroups.ps1";
 
         #get the groups:
         $rg1 = Get-AzResourceGroup -Name $resourceGroup1Name
         $rg2 = Get-AzResourceGroup -Name $resourceGroup2Name
 
-        if ($rg1.Name -ne '' -and $rg2.Name -ne '')
+        if ($rg1 -ne $null -and $rg2 -ne $null -and $rg1.Name -ne '' -and $rg2.Name -ne '')
         {
-            #run the deployment:  
-            $DeployResourcesScriptPath = Split-Path $MyInvocation.InvocationName
-            & "$DeployResourcesScriptPath\deploy_02_DeployResources.ps1"
+            Write-Output "Orchestrating Resource Deployments";
+
+            # #run the deployment:  
+            # $DeployResourcesScriptPath = Split-Path $MyInvocation.InvocationName
+            # & "$DeployResourcesScriptPath\deploy_02_DeployResources.ps1"
         }
         else
         {

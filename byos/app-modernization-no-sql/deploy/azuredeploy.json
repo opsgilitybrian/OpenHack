@@ -116,7 +116,7 @@
         },
         "repoURL": {
             "type": "string",
-            "defaultValue": "https://github.com/solliancenet/nosql-openhack.git",
+            "defaultValue": "https://github.com/opsgilitybrian/nosql-openhack.git",
             "metadata": {
                 "description": "The URL for the GitHub repository that contains the project to deploy."
             }

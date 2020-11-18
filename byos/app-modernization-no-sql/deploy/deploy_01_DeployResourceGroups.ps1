@@ -1,6 +1,7 @@
 # 
 #   Run a script to create the two resource groups, deleting the group if it exists or throwing an error
-
+#   Relies on being run from context with preset variables for $resourceGroup1Name, $resourceGroup2Name, $location1, $location2
+#
 Write-Output "Creating Resource Groups: [$resourceGroup1Name, $resourceGroup2Name]";
 
 #Ensure first resource group
@@ -17,7 +18,7 @@ else
     if ($rebuild.StartsWith("y","CurrentCultureIgnoreCase"))
     {
         Remove-AzResourceGroup -Name $resourceGroup1Name;
-        New-AzResourceGroup -Name $resourceGroup1Name -Location $location2;
+        New-AzResourceGroup -Name $resourceGroup1Name -Location $location1;
     }
     else
     {
