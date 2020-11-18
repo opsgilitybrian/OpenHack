@@ -98,7 +98,7 @@
             "description": "The branch of the GitHub repository to use."
         }
     },
-    "_artifactsLocation": {
+    "artifactsLocation": {
         "type": "string",
         "defaultValue": "https://raw.githubusercontent.com/opsgilitybrian/OpenHack/nosql-deployment-fixes/byos/app-modernization-no-sql/deploy"
     }
@@ -112,7 +112,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri":"[concat(parameters('_artifactsLocation'), '/eventhubdeploy.json')]",
+          "uri":"[concat(parameters('artifactsLocation'), '/eventhubdeploy.json')]",
           "contentVersion":"1.0.0.0"
         },
         "parameters": {
@@ -135,7 +135,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri":"[concat(parameters('_artifactsLocation'), '/sqldatabasedeploy.json')]",
+          "uri":"[concat(parameters('artifactsLocation'), '/sqldatabasedeploy.json')]",
           "contentVersion":"1.0.0.0"
         },
         "parameters": {
@@ -157,7 +157,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri":"[concat(parameters('_artifactsLocation'), '/webserverdeploy.json')]",
+          "uri":"[concat(parameters('artifactsLocation'), '/webserverdeploy.json')]",
           "contentVersion":"1.0.0.0"
         },
         "parameters": {
