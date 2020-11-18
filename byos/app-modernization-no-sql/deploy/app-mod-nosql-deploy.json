@@ -67,6 +67,17 @@
             "description": "The messaging tier for service Bus namespace"
         }
     },
+    "eventhubSkuCapacity": {
+        "type": "int",
+        "allowedValues": [
+            1, 2, 4
+        ],
+        "defaultValue": 2,
+        "minValue": 1,
+        "metadata": {
+            "description": "Describes plan's instance count"
+        }
+    },
     "eventHubName": {
         "type": "string",
         "defaultValue": "telemetry",
@@ -141,7 +152,7 @@
             "suffix": {"value": "[parameters('suffix')]" },
             "suffix2": {"value": "[parameters('suffix2')]" },
             "eventhubSku": {"value": "[parameters('eventhubSku')]" },
-            "skuCapacity": {"value": "[parameters('skuCapacity')]" },
+            "eventhubSkuCapacity": {"value": "[parameters('eventhubSkuCapacity')]" },
             "eventHubName": {"value": "[parameters('eventHubName')]" },
             "consumerGroupName": {"value": "[parameters('consumerGroupName')]" }
         }
