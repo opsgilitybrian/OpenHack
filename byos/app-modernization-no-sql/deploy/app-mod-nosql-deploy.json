@@ -196,7 +196,6 @@
             "sqlserverName": {"value": "[parameters('sqlserverName')]"},
             "sqlAdministratorLogin": {"value": "[parameters('sqlAdministratorLogin')]"},
             "sqlAdministratorLoginPassword": {"value": "[parameters('sqlAdministratorLoginPassword')]"},
-            "databaseName": {"value": "[parameters('databaseName')]"},
             "location": {"value": "[parameters('location')]"},
             "suffix": {"value": "[parameters('suffix')]"},
             "repoURL": {"value": "[parameters('repoURL')]"},
