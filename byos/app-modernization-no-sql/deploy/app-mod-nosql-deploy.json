@@ -176,33 +176,8 @@
             "suffix": {"value": "[parameters('suffix')]"}
         }
       }
-    },
-    {
-      "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2019-10-01",
-      "name": "linkedTemplate-Web",
-      "dependsOn": [
-          "linkedTemplate-SQL"
-      ],
-      "properties": {
-        "mode": "Incremental",
-        "templateLink": {
-          "uri":"[concat(parameters('artifactsLocation'), '/webserverdeploy.json')]",
-          "contentVersion":"1.0.0.0"
-        },
-        "parameters": {
-            "skuName": {"value": "[parameters('skuName')]"},
-            "skuCapacity": {"value": "[parameters('skuCapacity')]"},
-            "sqlserverName": {"value": "[parameters('sqlserverName')]"},
-            "sqlAdministratorLogin": {"value": "[parameters('sqlAdministratorLogin')]"},
-            "sqlAdministratorLoginPassword": {"value": "[parameters('sqlAdministratorLoginPassword')]"},
-            "location": {"value": "[parameters('location')]"},
-            "suffix": {"value": "[parameters('suffix')]"},
-            "repoURL": {"value": "[parameters('repoURL')]"},
-            "branch": {"value": "[parameters('branch')]"}
-        }
-      }
     }
+    
   ],
   "outputs": {
   }

@@ -146,5 +146,9 @@
         }
     ],
     "outputs": {
+        "siteUri": {
+            "type": "string",
+            "value": "[reference(concat('Microsoft.Web/sites/', variables('webSiteName'))).hostnames[0]]"
+        }
     }
 }

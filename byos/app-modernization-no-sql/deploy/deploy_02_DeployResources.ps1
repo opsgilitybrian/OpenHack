@@ -11,6 +11,11 @@ $repoURL = "https://github.com/opsgilitybrian/nosql-openhack.git";
 $branch = "master";
 $artifactsLocation = "https://raw.githubusercontent.com/opsgilitybrian/OpenHack/nosql-deployment-fixes/byos/app-modernization-no-sql/deploy";
 
+Write-Output "";
+Write-Output $sqlserverName;
+Write-Output $suffix;
+Write-Output "";
+
 Write-Output ("Starting Deployment of Resources");
 $outputs = New-AzResourceGroupDeployment `
             -ResourceGroupName $resourceGroup1Name `
