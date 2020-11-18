@@ -1,0 +1,180 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "skuName": {
+        "type": "string",
+        "defaultValue": "F1",
+        "allowedValues": [
+            "F1"
+        ],
+        "metadata": {
+            "description": "Describes plan's pricing tier and instance size. Check details at https://azure.microsoft.com/en-us/pricing/details/app-service/"
+        }
+    },
+    "skuCapacity": {
+        "type": "int",
+        "allowedValues": [
+            1,
+            2
+        ],
+        "defaultValue": 1,
+        "minValue": 1,
+        "metadata": {
+            "description": "Describes plan's instance count"
+        }
+    },
+    "location": {
+        "type": "string",
+        "defaultValue": "[resourceGroup().location]",
+        "metadata": {
+            "description": "Location for all resources in the first location."
+        }
+    },
+    "secondLocation": {
+        "type": "string",
+        "defaultValue": "[resourceGroup().location]",
+        "metadata": {
+            "description": "Location for all resources in the second location."
+        }
+    },
+    "secondResourceGroup": {
+        "type": "string",
+        "defaultValue": "openhack2"
+    },
+    "suffix": {
+        "defaultValue": "[concat('suf1', uniqueString(resourceGroup().id))]",
+        "type": "string",
+        "metadata": {
+            "description": "Unique suffix to append to all resource names in the first resource group."
+        }
+    },
+    "suffix2": {
+        "defaultValue": "[concat('suf2', uniqueString(resourceGroup().id))]",
+        "type": "string",
+        "metadata": {
+            "description": "Unique suffix to append to all resource names in the second resource group."
+        }
+    },
+    "eventhubSku": {
+        "type": "string",
+        "allowedValues": [
+            "Basic",
+            "Standard"
+        ],
+        "defaultValue": "Standard",
+        "metadata": {
+            "description": "The messaging tier for service Bus namespace"
+        }
+    },
+    "eventHubName": {
+        "type": "string",
+        "defaultValue": "telemetry",
+        "metadata": {
+            "description": "Name of Event Hub"
+        }
+    },
+    "consumerGroupName": {
+        "type": "string",
+        "defaultValue": "$Default",
+        "metadata": {
+            "description": "Name of Consumer Group"
+        }
+    },
+    "sqlserverName": {
+        "type": "string"
+    },
+    "repoURL": {
+        "type": "string",
+        "defaultValue": "https://github.com/opsgilitybrian/nosql-openhack.git",
+        "metadata": {
+            "description": "The URL for the GitHub repository that contains the project to deploy."
+        }
+    },
+    "branch": {
+        "type": "string",
+        "defaultValue": "master",
+        "metadata": {
+            "description": "The branch of the GitHub repository to use."
+        }
+    },
+    "_artifactsLocation": {
+        "type": "string",
+        "defaultValue": "https://raw.githubusercontent.com/opsgilitybrian/OpenHack/nosql-deployment-fixes/byos/app-modernization-no-sql/deploy"
+    }
+  },
+  "variables": {},
+  "resources": [
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "name": "linkedTemplate-EventHub",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri":"[concat(parameters('_artifactsLocation'), '/eventhubdeploy.json')]",
+          "contentVersion":"1.0.0.0"
+        },
+        "parameters": {
+            "eventHubName": {"value": "[parameters('eventHubName')]"},
+            "location": { "value": "[parameters('location')]" },
+            "secondLocation": {"value": "[parameters('secondLocation')]" },
+            "secondResourceGroup": {"value": "[parameters('secondResourceGroup')]" },
+            "suffix": {"value": "[parameters('suffix')]" },
+            "suffix2": {"value": "[parameters('suffix2')]" },
+            "eventhubSku": {"value": "[parameters('eventhubSku')]" },
+            "eventHubName": {"value": "[parameters('eventHubName')]" },
+            "consumerGroupName": {"value": "[parameters('consumerGroupName')]" }
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "name": "linkedTemplate-SQL",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri":"[concat(parameters('_artifactsLocation'), '/sqldatabasedeploy.json')]",
+          "contentVersion":"1.0.0.0"
+        },
+        "parameters": {
+            "sqlserverName": {"value": "[parameters('sqlserverName')]"},
+            "sqlAdministratorLogin": {"value": "[parameters('sqlAdministratorLogin')]"},
+            "sqlAdministratorLoginPassword": {"value": "[parameters('sqlAdministratorLoginPassword')]"},
+            "location": {"value": "[parameters('location')]"},
+            "suffix": {"value": "[parameters('suffix')]"}
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "name": "linkedTemplate-Web",
+      "dependsOn": [
+          "linkedTemplate-SQL"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri":"[concat(parameters('_artifactsLocation'), '/webserverdeploy.json')]",
+          "contentVersion":"1.0.0.0"
+        },
+        "parameters": {
+            "skuName": {"value": "[parameters('skuName')]"},
+            "skuCapacity": {"value": "[parameters('skuCapacity')]"},
+            "sqlserverName": {"value": "[parameters('sqlserverName')]"},
+            "sqlAdministratorLogin": {"value": "[parameters('sqlAdministratorLogin')]"},
+            "sqlAdministratorLoginPassword": {"value": "[parameters('sqlAdministratorLoginPassword')]"},
+            "databaseName": {"value": "[parameters('databaseName')]"},
+            "location": {"value": "[parameters('location')]"},
+            "suffix": {"value": "[parameters('suffix')]"},
+            "repoURL": {"value": "[parameters('repoURL')]"},
+            "branch": {"value": "[parameters('branch')]"}
+        }
+      }
+    }
+  ],
+  "outputs": {
+  }
+}
