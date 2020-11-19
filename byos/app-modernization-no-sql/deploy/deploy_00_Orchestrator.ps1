@@ -24,8 +24,11 @@ try {
         $suffix = -join ((48..57) + (97..122) | Get-Random -Count 13 | % {[char]$_})
         $suffix2 = -join ((48..57) + (97..122) | Get-Random -Count 13 | % {[char]$_})
         
-        # $suffix = "6ifndrtczg7ah";
-        # $suffix2 = "jnqby7iwc4mze";
+        #TODO: Only use these if re-running, make sure to update the suffixes with the
+        #       Values in your deployed resource groups.  This only matters if you don't
+        #       Do a full deployment (i.e. you comment out the RG remove/recreate script)
+        #$suffix = "y3mb18fgc09di";
+        #$suffix2 = "ovalbzs06nm3r";
 
         $databaseName = "Movies"
         $sqlserverName = "openhacksql-" + $teamName + "-" + $suffix
