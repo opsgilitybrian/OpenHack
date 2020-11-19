@@ -30,8 +30,8 @@ for ($i = 1; $i -le $teamCount; $i++)
         $sqlserverName = "openhacksql-" + $teamName + "-" + $suffix;
 
         ## Create the Resource Groups ##  
-        $DeployRGsScriptPath = Split-Path $MyInvocation.InvocationName
-        & "$DeployRGsScriptPath\deploy_01_DeployResourceGroups.ps1";
+        #$DeployRGsScriptPath = Split-Path $MyInvocation.InvocationName
+        #& "$DeployRGsScriptPath\deploy_01_DeployResourceGroups.ps1";
 
         $rg1 = Get-AzResourceGroup -Name $resourceGroup1Name;
         $rg1 = Get-AzResourceGroup -Name $resourceGroup2Name;
