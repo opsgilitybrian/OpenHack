@@ -6,7 +6,18 @@
         "type": "string",
         "defaultValue": "F1",
         "allowedValues": [
-            "F1"
+            "F1",
+            "D1",
+            "B1",
+            "B2",
+            "B3",
+            "S1",
+            "S2",
+            "S3",
+            "P1",
+            "P2",
+            "P3",
+            "P4"
         ],
         "metadata": {
             "description": "Describes plan's pricing tier and instance size. Check details at https://azure.microsoft.com/en-us/pricing/details/app-service/"
@@ -16,7 +27,8 @@
         "type": "int",
         "allowedValues": [
             1,
-            2
+            2,
+            4
         ],
         "defaultValue": 1,
         "minValue": 1,
@@ -132,7 +144,9 @@
         "defaultValue": "https://raw.githubusercontent.com/opsgilitybrian/OpenHack/nosql-deployment-fixes/byos/app-modernization-no-sql/deploy"
     }
   },
-  "variables": {},
+  "variables": {
+    "databaseName": "Movies"
+  },
   "resources": [
     {
       "type": "Microsoft.Resources/deployments",
@@ -191,13 +205,13 @@
           "contentVersion":"1.0.0.0"
         },
         "parameters": {
-            "skuName": {"value": "[parameters('skuName')]"},
-            "skuCapacity": {"value": "[parameters('skuCapacity')]"},
             "sqlserverName": {"value": "[parameters('sqlserverName')]"},
             "sqlAdministratorLogin": {"value": "[parameters('sqlAdministratorLogin')]"},
             "sqlAdministratorLoginPassword": {"value": "[parameters('sqlAdministratorLoginPassword')]"},
             "location": {"value": "[parameters('location')]"},
             "suffix": {"value": "[parameters('suffix')]"},
+            "skuName": {"value": "[parameters('skuName')]"},
+            "skuCapacity": {"value": "[parameters('skuCapacity')]"},
             "repoURL": {"value": "[parameters('repoURL')]"},
             "branch": {"value": "[parameters('branch')]"}
         }

@@ -6,7 +6,18 @@
             "type": "string",
             "defaultValue": "F1",
             "allowedValues": [
-                "F1"
+                "F1",
+                "D1",
+                "B1",
+                "B2",
+                "B3",
+                "S1",
+                "S2",
+                "S3",
+                "P1",
+                "P2",
+                "P3",
+                "P4"
             ],
             "metadata": {
                 "description": "Describes plan's pricing tier and instance size. Check details at https://azure.microsoft.com/en-us/pricing/details/app-service/"
@@ -16,7 +27,8 @@
             "type": "int",
             "allowedValues": [
                 1,
-                2
+                2,
+                4
             ],
             "defaultValue": 1,
             "minValue": 1,
@@ -26,10 +38,7 @@
         },
         "sqlserverName": {
             "defaultValue": "[concat('openhacksql', parameters('suffix'))]",
-            "type": "string",
-            "metadata": {
-                "description": "The name of the SQL Server"
-            }
+            "type": "string"
         },
         "sqlAdministratorLogin": {
             "type": "string",
@@ -61,7 +70,7 @@
         },
         "repoURL": {
             "type": "string",
-            "defaultValue": "https://github.com/opsgilitybrian/nosql-openhack.git",
+            "defaultValue": "https://github.com/solliancenet/nosql-openhack.git",
             "metadata": {
                 "description": "The URL for the GitHub repository that contains the project to deploy."
             }
