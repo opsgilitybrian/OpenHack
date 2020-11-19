@@ -24,5 +24,3 @@ while ($importStatus.Status -eq "InProgress") {
 
 [Console]::WriteLine("")
 $importStatus
-
-Write-Output ("Import data completed");

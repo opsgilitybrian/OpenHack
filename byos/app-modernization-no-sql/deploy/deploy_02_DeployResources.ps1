@@ -4,15 +4,15 @@
 #                           , $sqlserverName, $sqlAdministratorLogin, $sqlAdministratorLoginPassword
 #                           , $suffix, $suffix2
 
-#$templateUri = "https://raw.githubusercontent.com/microsoft/OpenHack/main/byos/app-modernization-no-sql/deploy/azuredeploy.json"
+$templateUri = "https://raw.githubusercontent.com/microsoft/OpenHack/main/byos/app-modernization-no-sql/deploy/azuredeploy.json"
 
-$templateUri = "https://raw.githubusercontent.com/opsgilitybrian/OpenHack/nosql-deployment-fixes/byos/app-modernization-no-sql/deploy/app-mod-nosql-deploy.json";
-$artifactsLocation = "https://raw.githubusercontent.com/opsgilitybrian/OpenHack/nosql-deployment-fixes/byos/app-modernization-no-sql/deploy";
+#$templateUri = "https://raw.githubusercontent.com/opsgilitybrian/OpenHack/nosql-deployment-fixes/byos/app-modernization-no-sql/deploy/app-mod-nosql-deploy.json";
+# $artifactsLocation = "https://raw.githubusercontent.com/opsgilitybrian/OpenHack/nosql-deployment-fixes/byos/app-modernization-no-sql/deploy";
 
-Write-Output "";
-Write-Output $sqlserverName;
-Write-Output $suffix;
-Write-Output "";
+# Write-Output "";
+# Write-Output $sqlserverName;
+# Write-Output $suffix;
+# Write-Output "";
 
 Write-Output ("Starting Deployment of Resources");
 $outputs = New-AzResourceGroupDeployment `
