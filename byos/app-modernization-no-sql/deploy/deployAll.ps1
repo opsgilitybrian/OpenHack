@@ -34,14 +34,17 @@ for ($i = 1; $i -le $teamCount; $i++)
         #& "$DeployRGsScriptPath\deploy_01_DeployResourceGroups.ps1";
 
         $rg1 = Get-AzResourceGroup -Name $resourceGroup1Name;
-        $rg1 = Get-AzResourceGroup -Name $resourceGroup2Name;
+        $rg2 = Get-AzResourceGroup -Name $resourceGroup2Name;
 
+        # Write-Output $rg1;
+        # Write-Output $rg2;
+        
         if ($rg1 -ne $null -and $rg2 -ne $null -and $rg1.Name -ne '' -and $rg2.Name -ne '')
         {
             Write-Output "Starting Resource Deployments";
             #run the deployment:  
-            $DeployResourcesScriptPath = Split-Path $MyInvocation.InvocationName
-            & "$DeployResourcesScriptPath\deploy_02_DeployResources.ps1"
+            #$DeployResourcesScriptPath = Split-Path $MyInvocation.InvocationName
+            #& "$DeployResourcesScriptPath\deploy_02_DeployResources.ps1"
 
             Write-Output ("Resource Deployment Completed.");
 

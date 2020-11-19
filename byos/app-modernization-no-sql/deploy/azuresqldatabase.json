@@ -44,9 +44,6 @@
             "type": "Microsoft.Sql/servers/databases",
             "apiVersion": "2020-08-01-preview",
             "name": "[concat(parameters('sqlserverName'), '/Movies')]",
-            "dependsOn": [
-                "[parameters('sqlserverName')]"
-            ],
             "location": "[parameters('location')]",
             "sku": {
                 "name": "Basic",

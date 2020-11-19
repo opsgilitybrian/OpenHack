@@ -10,7 +10,6 @@
 # $artifactsLocation = "https://raw.githubusercontent.com/opsgilitybrian/OpenHack/nosql-deployment-fixes/byos/app-modernization-no-sql/deploy";
 $templateUri = "https://raw.githubusercontent.com/opsgilitybrian/OpenHack/nosql-deployment-fixes/byos/app-modernization-no-sql/deploy/azuredeploy.json";
 
-Write-Output ("Starting Deployment of Resources");
 $outputs = New-AzResourceGroupDeployment `
             -ResourceGroupName $resourceGroup1Name `
             -location $location1 `
@@ -56,17 +55,6 @@ if ($sqlServerInstance)
 else
 {
     throw "Could not validate existence of deployed sql server: $sqlserverName";
-}
-
-#validate movies database was created.
-$dbInstance = Get-AzSqlDatabase -DatabaseName $databaseName -ServerName $sqlserverName -ResourceGroupName $resourceGroup1Name;
-if ($dbInstance)
-{
-    Write-Output "Sql database $databaseName was created successfully!";
-}
-else
-{
-    throw "Could not validate existence of deployed database $databaseName";
 }
 
 #validate AppService Plan

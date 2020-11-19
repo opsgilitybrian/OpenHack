@@ -10,3 +10,14 @@ $outputs = New-AzResourceGroupDeployment `
             -sqlAdministratorLogin $sqlAdministratorLogin `
             -sqlAdministratorLoginPassword $(ConvertTo-SecureString -String $sqlAdministratorLoginPassword -AsPlainText -Force) `
             -suffix $suffix  
+
+#validate movies database was created.
+$dbInstance = Get-AzSqlDatabase -DatabaseName $databaseName -ServerName $sqlserverName -ResourceGroupName $resourceGroup1Name;
+if ($dbInstance)
+{
+    Write-Output "Sql database $databaseName was created successfully!";
+}
+else
+{
+    throw "Could not validate existence of deployed database $databaseName";
+}
