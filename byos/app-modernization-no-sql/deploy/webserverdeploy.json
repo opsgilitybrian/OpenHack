@@ -37,7 +37,7 @@
             }
         },
         "sqlserverName": {
-            "defaultValue": "[concat('openhacksql', parameters('suffix'))]",
+            "defaultValue": "bad_data",
             "type": "string"
         },
         "sqlAdministratorLogin": {
