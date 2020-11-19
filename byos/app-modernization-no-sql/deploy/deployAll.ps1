@@ -46,7 +46,8 @@ for ($i = 1; $i -le $teamCount; $i++)
             Write-Output ("Resource Deployment Completed.");
 
             Write-Output ("Starting Deployment of Movies Database");
-
+            $DeployResourcesScriptPath = Split-Path $MyInvocation.InvocationName
+            & "$DeployResourcesScriptPath\deploy_02_1_DeployDatabase.ps1"
 
             Write-Output ("Database deployment completed.");
 
