@@ -95,5 +95,4 @@ else {
     throw "Could not validate existence of deployed app service web $aspWebAppName";
 }
 
-
 Write-Output "Resource Deployment Completed and Validated successfully";

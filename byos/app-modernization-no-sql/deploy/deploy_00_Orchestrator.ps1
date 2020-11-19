@@ -24,15 +24,15 @@ try {
         $suffix = -join ((48..57) + (97..122) | Get-Random -Count 13 | % {[char]$_})
         $suffix2 = -join ((48..57) + (97..122) | Get-Random -Count 13 | % {[char]$_})
         
-        $suffix = "6ifndrtczg7ah";
-        $suffix2 = "jnqby7iwc4mze";
+        # $suffix = "6ifndrtczg7ah";
+        # $suffix2 = "jnqby7iwc4mze";
 
         $databaseName = "Movies"
         $sqlserverName = "openhacksql-" + $teamName + "-" + $suffix
 
         ## Create the Resource Groups ##  
-        #$DeployRGsScriptPath = Split-Path $MyInvocation.InvocationName
-        #  & "$DeployRGsScriptPath\deploy_01_DeployResourceGroups.ps1";
+        $DeployRGsScriptPath = Split-Path $MyInvocation.InvocationName
+         & "$DeployRGsScriptPath\deploy_01_DeployResourceGroups.ps1";
 
         #get the groups:
         $rg1 = Get-AzResourceGroup -Name $resourceGroup1Name
